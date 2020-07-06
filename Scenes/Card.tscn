@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Card.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/card_attack_t1.png" type="Texture" id=2]
+[ext_resource path="res://Sound/rollover3.ogg" type="AudioStream" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7.8587, 12.1527 )
+
+[node name="Card" type="Control"]
+mouse_filter = 1
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sprite" type="TextureRect" parent="."]
+margin_left = -10.7214
+margin_top = -15.7668
+margin_right = 11.2786
+margin_bottom = 16.2332
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Area2D" type="Area2D" parent="sprite"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sprite/Area2D"]
+position = Vector2( 10.8627, 15.9195 )
+shape = SubResource( 1 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -12.0
+pitch_scale = 1.22
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_Card_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_Card_mouse_exited"]
+[connection signal="area_entered" from="sprite/Area2D" to="." method="_on_area_entered"]
+[connection signal="area_exited" from="sprite/Area2D" to="." method="_on_area_exited"]

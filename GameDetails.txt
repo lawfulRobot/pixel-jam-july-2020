@@ -1,0 +1,16 @@
+pixel art
+simplistic - treating complex issues and problems as if they were much simpler than they really are.
+simple - easy to understand or not complicated.
+
+simple duel
+	you have 5 units
+	you have XX health
+	each turn draw 5 cards
+		cards are either attack or block
+		there are 3 card tiers
+		each tier deals or blocks 1,2,3 damage
+	assign 1 card to each of the units
+	combat is then executed
+	when an attack deals damage you lose health
+	the units don't die, instead damage is dealt to the player
+	if your health reaches 0 you lose

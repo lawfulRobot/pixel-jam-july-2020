@@ -1,0 +1,578 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://GameManager.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Turret_enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Turret_player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Sprites/grass.png" type="Texture" id=4]
+[ext_resource path="res://Font/kenney_pixel.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Sprites/heart.png" type="Texture" id=6]
+[ext_resource path="res://Pixel_theme.tres" type="Theme" id=7]
+[ext_resource path="res://Sprites/card_attack_t1.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/card_attack_t2.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/card_attack_t3.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/card_block_t2.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/card_block_t3.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/card_mystery.png" type="Texture" id=14]
+
+[sub_resource type="TileSet" id=1]
+0/name = "grass.png 0"
+0/texture = ExtResource( 4 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 16, 16 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+
+[node name="World" type="Node2D"]
+
+[node name="Tutorial" type="CanvasLayer" parent="."]
+follow_viewport_enable = true
+
+[node name="Control" type="Control" parent="Tutorial"]
+visible = false
+anchor_left = -0.154
+anchor_top = -0.145
+anchor_right = 0.14
+anchor_bottom = 0.147
+margin_left = 0.200012
+margin_top = 7.62939e-06
+margin_bottom = -0.199997
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect2" type="TextureRect" parent="Tutorial/Control"]
+self_modulate = Color( 0, 0, 0, 0.509804 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -23.0
+margin_top = -15.0
+margin_right = 24.0
+margin_bottom = -35.0
+texture = ExtResource( 4 )
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Tutorial/Control"]
+anchor_left = -0.146
+anchor_right = -0.146
+margin_left = 34.437
+margin_top = 102.755
+margin_right = 105.437
+margin_bottom = 144.755
+rect_scale = Vector2( 0.5, 0.5 )
+theme = ExtResource( 7 )
+text = "This is your
+ health"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="Tutorial/Control"]
+anchor_left = -0.146
+anchor_right = -0.146
+margin_left = 34.437
+margin_top = 52.1968
+margin_right = 113.437
+margin_bottom = 94.1968
+rect_scale = Vector2( 0.5, 0.5 )
+theme = ExtResource( 7 )
+text = "This is your
+enemy's health"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Tutorial/Control"]
+anchor_left = -0.146
+anchor_right = -0.146
+margin_left = 72.581
+margin_top = 90.047
+margin_right = 407.581
+margin_bottom = 162.047
+rect_scale = Vector2( 0.5, 0.5 )
+theme = ExtResource( 7 )
+text = "These are your cards. drag them onto your turrets to play them
+sword means attack, shield means block.
+the green icons represent the amount of damage the turret will
+deal/block. you can only play 1 card per turret, once all cards
+are played combat will automatically begin"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TutorialCardContainer" type="HBoxContainer" parent="Tutorial/Control"]
+margin_left = -81.4086
+margin_top = 71.7242
+margin_right = 329.591
+margin_bottom = 133.724
+mouse_filter = 2
+custom_constants/separation = 32
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Card" type="Control" parent="Tutorial/Control/TutorialCardContainer"]
+margin_left = 141.0
+margin_right = 141.0
+margin_bottom = 61.0
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sprite" type="TextureRect" parent="Tutorial/Control/TutorialCardContainer/Card"]
+margin_left = -10.7214
+margin_top = -15.7668
+margin_right = 11.2786
+margin_bottom = 16.2332
+texture = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Card2" type="Control" parent="Tutorial/Control/TutorialCardContainer"]
+margin_left = 173.0
+margin_right = 173.0
+margin_bottom = 61.0
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sprite" type="TextureRect" parent="Tutorial/Control/TutorialCardContainer/Card2"]
+margin_left = -10.7214
+margin_top = -15.7668
+margin_right = 11.2786
+margin_bottom = 16.2332
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Card3" type="Control" parent="Tutorial/Control/TutorialCardContainer"]
+margin_left = 205.0
+margin_right = 205.0
+margin_bottom = 61.0
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sprite" type="TextureRect" parent="Tutorial/Control/TutorialCardContainer/Card3"]
+margin_left = -10.7214
+margin_top = -15.7668
+margin_right = 11.2786
+margin_bottom = 16.2332
+texture = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Card4" type="Control" parent="Tutorial/Control/TutorialCardContainer"]
+margin_left = 237.0
+margin_right = 237.0
+margin_bottom = 61.0
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sprite" type="TextureRect" parent="Tutorial/Control/TutorialCardContainer/Card4"]
+margin_left = -10.7214
+margin_top = -15.7668
+margin_right = 11.2786
+margin_bottom = 16.2332
+texture = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Card5" type="Control" parent="Tutorial/Control/TutorialCardContainer"]
+margin_left = 269.0
+margin_right = 269.0
+margin_bottom = 61.0
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sprite" type="TextureRect" parent="Tutorial/Control/TutorialCardContainer/Card5"]
+margin_left = -10.7214
+margin_top = -15.7668
+margin_right = 11.2786
+margin_bottom = 16.2332
+texture = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MysteryCard" type="Control" parent="Tutorial/Control"]
+margin_left = 51.8545
+margin_top = 15.9123
+margin_right = 51.8545
+margin_bottom = 76.9123
+rect_scale = Vector2( 0.6, 0.6 )
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sprite" type="TextureRect" parent="Tutorial/Control/MysteryCard"]
+margin_left = -10.7214
+margin_top = -15.7668
+margin_right = 11.2786
+margin_bottom = 16.2332
+texture = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sprite2" type="TextureRect" parent="Tutorial/Control/MysteryCard"]
+margin_left = -10.7214
+margin_top = -15.7668
+margin_right = 11.2786
+margin_bottom = 16.2332
+texture = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MysteryCard2" type="Control" parent="Tutorial/Control"]
+margin_left = 87.2121
+margin_top = 15.9123
+margin_right = 87.2121
+margin_bottom = 76.9123
+rect_scale = Vector2( 0.6, 0.6 )
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sprite" type="TextureRect" parent="Tutorial/Control/MysteryCard2"]
+margin_left = -10.7214
+margin_top = -15.7668
+margin_right = 11.2786
+margin_bottom = 16.2332
+texture = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sprite2" type="TextureRect" parent="Tutorial/Control/MysteryCard2"]
+margin_left = -10.7214
+margin_top = -15.7668
+margin_right = 11.2786
+margin_bottom = 16.2332
+texture = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MysteryCard3" type="Control" parent="Tutorial/Control"]
+margin_left = 123.131
+margin_top = 15.9123
+margin_right = 123.131
+margin_bottom = 76.9123
+rect_scale = Vector2( 0.6, 0.6 )
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sprite" type="TextureRect" parent="Tutorial/Control/MysteryCard3"]
+margin_left = -10.7214
+margin_top = -15.7668
+margin_right = 11.2786
+margin_bottom = 16.2332
+texture = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sprite2" type="TextureRect" parent="Tutorial/Control/MysteryCard3"]
+margin_left = -10.7214
+margin_top = -15.7668
+margin_right = 11.2786
+margin_bottom = 16.2332
+texture = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MysteryCard4" type="Control" parent="Tutorial/Control"]
+margin_left = 162.417
+margin_top = 15.9123
+margin_right = 162.417
+margin_bottom = 76.9123
+rect_scale = Vector2( 0.6, 0.6 )
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sprite" type="TextureRect" parent="Tutorial/Control/MysteryCard4"]
+margin_left = -10.7214
+margin_top = -15.7668
+margin_right = 11.2786
+margin_bottom = 16.2332
+texture = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sprite2" type="TextureRect" parent="Tutorial/Control/MysteryCard4"]
+margin_left = -10.7214
+margin_top = -15.7668
+margin_right = 11.2786
+margin_bottom = 16.2332
+texture = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MysteryCard5" type="Control" parent="Tutorial/Control"]
+margin_left = 200.02
+margin_top = 15.9123
+margin_right = 200.02
+margin_bottom = 76.9123
+rect_scale = Vector2( 0.6, 0.6 )
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sprite" type="TextureRect" parent="Tutorial/Control/MysteryCard5"]
+margin_left = -10.7214
+margin_top = -15.7668
+margin_right = 11.2786
+margin_bottom = 16.2332
+texture = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sprite2" type="TextureRect" parent="Tutorial/Control/MysteryCard5"]
+margin_left = -10.7214
+margin_top = -15.7668
+margin_right = 11.2786
+margin_bottom = 16.2332
+texture = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label4" type="Label" parent="Tutorial/Control"]
+anchor_left = -0.146
+anchor_right = -0.146
+margin_left = 73.3911
+margin_top = 26.0
+margin_right = 408.391
+margin_bottom = 71.0
+rect_scale = Vector2( 0.5, 0.5 )
+theme = ExtResource( 7 )
+text = "during strategy phase, mystery cards will show here
+these are your opponent's plans.
+use this knowledge wisely"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UI" type="CanvasLayer" parent="."]
+follow_viewport_enable = true
+
+[node name="EnemyHealth" type="TextureRect" parent="UI"]
+margin_left = -122.0
+margin_top = -69.504
+margin_right = -87.0
+margin_bottom = -34.504
+texture = ExtResource( 6 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/EnemyHealth"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -9.5
+margin_top = -13.996
+margin_right = 2.5
+margin_bottom = -1.996
+rect_scale = Vector2( 1.8, 1.8 )
+custom_fonts/font = ExtResource( 5 )
+text = "30"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerHealth" type="TextureRect" parent="UI"]
+margin_left = -122.0
+margin_top = 35.799
+margin_right = -87.0
+margin_bottom = 70.799
+texture = ExtResource( 6 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/PlayerHealth"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -9.5
+margin_top = -13.299
+margin_right = 2.5
+margin_bottom = -1.299
+rect_scale = Vector2( 1.8, 1.8 )
+custom_fonts/font = ExtResource( 5 )
+text = "30"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameOverText" type="Label" parent="UI"]
+margin_left = -95.1942
+margin_top = -40.7352
+margin_right = -31.1942
+margin_bottom = -14.7352
+rect_scale = Vector2( 3, 3 )
+custom_fonts/font = ExtResource( 5 )
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource( 1 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( -524304, 0, 0, -524303, 0, 0, -524302, 0, 0, -524301, 0, 0, -524300, 0, 0, -524299, 0, 0, -524298, 0, 0, -524297, 0, 0, -524296, 0, 0, -524295, 0, 0, -524294, 0, 0, -524293, 0, 0, -524292, 0, 0, -524291, 0, 0, -524290, 0, 0, -524289, 0, 0, -589824, 0, 0, -589823, 0, 0, -589822, 0, 0, -589821, 0, 0, -589820, 0, 0, -589819, 0, 0, -589818, 0, 0, -589817, 0, 0, -589816, 0, 0, -589815, 0, 0, -589814, 0, 0, -589813, 0, 0, -589812, 0, 0, -589811, 0, 0, -589810, 0, 0, -589809, 0, 0, -458768, 0, 0, -458767, 0, 0, -458766, 0, 0, -458765, 0, 0, -458764, 0, 0, -458763, 0, 0, -458762, 0, 0, -458761, 0, 0, -458760, 0, 0, -458759, 0, 0, -458758, 0, 0, -458757, 0, 0, -458756, 0, 0, -458755, 0, 0, -458754, 0, 0, -458753, 0, 0, -524288, 0, 0, -524287, 0, 0, -524286, 0, 0, -524285, 0, 0, -524284, 0, 0, -524283, 0, 0, -524282, 0, 0, -524281, 0, 0, -524280, 0, 0, -524279, 0, 0, -524278, 0, 0, -524277, 0, 0, -524276, 0, 0, -524275, 0, 0, -524274, 0, 0, -524273, 0, 0, -393232, 0, 0, -393231, 0, 0, -393230, 0, 0, -393229, 0, 0, -393228, 0, 0, -393227, 0, 0, -393226, 0, 0, -393225, 0, 0, -393224, 0, 0, -393223, 0, 0, -393222, 0, 0, -393221, 0, 0, -393220, 0, 0, -393219, 0, 0, -393218, 0, 0, -393217, 0, 0, -458752, 0, 0, -458751, 0, 0, -458750, 0, 0, -458749, 0, 0, -458748, 0, 0, -458747, 0, 0, -458746, 0, 0, -458745, 0, 0, -458744, 0, 0, -458743, 0, 0, -458742, 0, 0, -458741, 0, 0, -458740, 0, 0, -458739, 0, 0, -458738, 0, 0, -458737, 0, 0, -327696, 0, 0, -327695, 0, 0, -327694, 0, 0, -327693, 0, 0, -327692, 0, 0, -327691, 0, 0, -327690, 0, 0, -327689, 0, 0, -327688, 0, 0, -327687, 0, 0, -327686, 0, 0, -327685, 0, 0, -327684, 0, 0, -327683, 0, 0, -327682, 0, 0, -327681, 0, 0, -393216, 0, 0, -393215, 0, 0, -393214, 0, 0, -393213, 0, 0, -393212, 0, 0, -393211, 0, 0, -393210, 0, 0, -393209, 0, 0, -393208, 0, 0, -393207, 0, 0, -393206, 0, 0, -393205, 0, 0, -393204, 0, 0, -393203, 0, 0, -393202, 0, 0, -393201, 0, 0, -262160, 0, 0, -262159, 0, 0, -262158, 0, 0, -262157, 0, 0, -262156, 0, 0, -262155, 0, 0, -262154, 0, 0, -262153, 0, 0, -262152, 0, 0, -262151, 0, 0, -262150, 0, 0, -262149, 0, 0, -262148, 0, 0, -262147, 0, 0, -262146, 0, 0, -262145, 0, 0, -327680, 0, 0, -327679, 0, 0, -327678, 0, 0, -327677, 0, 0, -327676, 0, 0, -327675, 0, 0, -327674, 0, 0, -327673, 0, 0, -327672, 0, 0, -327671, 0, 0, -327670, 0, 0, -327669, 0, 0, -327668, 0, 0, -327667, 0, 0, -327666, 0, 0, -327665, 0, 0, -196624, 0, 0, -196623, 0, 0, -196622, 0, 0, -196621, 0, 0, -196620, 0, 0, -196619, 0, 0, -196618, 0, 0, -196617, 0, 0, -196616, 0, 0, -196615, 0, 0, -196614, 0, 0, -196613, 0, 0, -196612, 0, 0, -196611, 0, 0, -196610, 0, 0, -196609, 0, 0, -262144, 0, 0, -262143, 0, 0, -262142, 0, 0, -262141, 0, 0, -262140, 0, 0, -262139, 0, 0, -262138, 0, 0, -262137, 0, 0, -262136, 0, 0, -262135, 0, 0, -262134, 0, 0, -262133, 0, 0, -262132, 0, 0, -262131, 0, 0, -262130, 0, 0, -262129, 0, 0, -131088, 0, 0, -131087, 0, 0, -131086, 0, 0, -131085, 0, 0, -131084, 0, 0, -131083, 0, 0, -131082, 0, 0, -131081, 0, 0, -131080, 0, 0, -131079, 0, 0, -131078, 0, 0, -131077, 0, 0, -131076, 0, 0, -131075, 0, 0, -131074, 0, 0, -131073, 0, 0, -196608, 0, 0, -196607, 0, 0, -196606, 0, 0, -196605, 0, 0, -196604, 0, 0, -196603, 0, 0, -196602, 0, 0, -196601, 0, 0, -196600, 0, 0, -196599, 0, 0, -196598, 0, 0, -196597, 0, 0, -196596, 0, 0, -196595, 0, 0, -196594, 0, 0, -196593, 0, 0, -65552, 0, 0, -65551, 0, 0, -65550, 0, 0, -65549, 0, 0, -65548, 0, 0, -65547, 0, 0, -65546, 0, 0, -65545, 0, 0, -65544, 0, 0, -65543, 0, 0, -65542, 0, 0, -65541, 0, 0, -65540, 0, 0, -65539, 0, 0, -65538, 0, 0, -65537, 0, 0, -131072, 0, 0, -131071, 0, 0, -131070, 0, 0, -131069, 0, 0, -131068, 0, 0, -131067, 0, 0, -131066, 0, 0, -131065, 0, 0, -131064, 0, 0, -131063, 0, 0, -131062, 0, 0, -131061, 0, 0, -131060, 0, 0, -131059, 0, 0, -131058, 0, 0, -131057, 0, 0, -16, 0, 0, -15, 0, 0, -14, 0, 0, -13, 0, 0, -12, 0, 0, -11, 0, 0, -10, 0, 0, -9, 0, 0, -8, 0, 0, -7, 0, 0, -6, 0, 0, -5, 0, 0, -4, 0, 0, -3, 0, 0, -2, 0, 0, -1, 0, 0, -65536, 0, 0, -65535, 0, 0, -65534, 0, 0, -65533, 0, 0, -65532, 0, 0, -65531, 0, 0, -65530, 0, 0, -65529, 0, 0, -65528, 0, 0, -65527, 0, 0, -65526, 0, 0, -65525, 0, 0, -65524, 0, 0, -65523, 0, 0, -65522, 0, 0, -65521, 0, 0, 65520, 0, 0, 65521, 0, 0, 65522, 0, 0, 65523, 0, 0, 65524, 0, 0, 65525, 0, 0, 65526, 0, 0, 65527, 0, 0, 65528, 0, 0, 65529, 0, 0, 65530, 0, 0, 65531, 0, 0, 65532, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 131056, 0, 0, 131057, 0, 0, 131058, 0, 0, 131059, 0, 0, 131060, 0, 0, 131061, 0, 0, 131062, 0, 0, 131063, 0, 0, 131064, 0, 0, 131065, 0, 0, 131066, 0, 0, 131067, 0, 0, 131068, 0, 0, 131069, 0, 0, 131070, 0, 0, 131071, 0, 0, 65536, 0, 0, 65537, 0, 0, 65538, 0, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 65544, 0, 0, 65545, 0, 0, 65546, 0, 0, 65547, 0, 0, 65548, 0, 0, 65549, 0, 0, 65550, 0, 0, 65551, 0, 0, 196592, 0, 0, 196593, 0, 0, 196594, 0, 0, 196595, 0, 0, 196596, 0, 0, 196597, 0, 0, 196598, 0, 0, 196599, 0, 0, 196600, 0, 0, 196601, 0, 0, 196602, 0, 0, 196603, 0, 0, 196604, 0, 0, 196605, 0, 0, 196606, 0, 0, 196607, 0, 0, 131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 0, 0, 131076, 0, 0, 131077, 0, 0, 131078, 0, 0, 131079, 0, 0, 131080, 0, 0, 131081, 0, 0, 131082, 0, 0, 131083, 0, 0, 131084, 0, 0, 131085, 0, 0, 131086, 0, 0, 131087, 0, 0, 262128, 0, 0, 262129, 0, 0, 262130, 0, 0, 262131, 0, 0, 262132, 0, 0, 262133, 0, 0, 262134, 0, 0, 262135, 0, 0, 262136, 0, 0, 262137, 0, 0, 262138, 0, 0, 262139, 0, 0, 262140, 0, 0, 262141, 0, 0, 262142, 0, 0, 262143, 0, 0, 196608, 0, 0, 196609, 0, 0, 196610, 0, 0, 196611, 0, 0, 196612, 0, 0, 196613, 0, 0, 196614, 0, 0, 196615, 0, 0, 196616, 0, 0, 196617, 0, 0, 196618, 0, 0, 196619, 0, 0, 196620, 0, 0, 196621, 0, 0, 196622, 0, 0, 196623, 0, 0, 327664, 0, 0, 327665, 0, 0, 327666, 0, 0, 327667, 0, 0, 327668, 0, 0, 327669, 0, 0, 327670, 0, 0, 327671, 0, 0, 327672, 0, 0, 327673, 0, 0, 327674, 0, 0, 327675, 0, 0, 327676, 0, 0, 327677, 0, 0, 327678, 0, 0, 327679, 0, 0, 262144, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 262148, 0, 0, 262149, 0, 0, 262150, 0, 0, 262151, 0, 0, 262152, 0, 0, 262153, 0, 0, 262154, 0, 0, 262155, 0, 0, 262156, 0, 0, 262157, 0, 0, 262158, 0, 0, 262159, 0, 0, 393200, 0, 0, 393201, 0, 0, 393202, 0, 0, 393203, 0, 0, 393204, 0, 0, 393205, 0, 0, 393206, 0, 0, 393207, 0, 0, 393208, 0, 0, 393209, 0, 0, 393210, 0, 0, 393211, 0, 0, 393212, 0, 0, 393213, 0, 0, 393214, 0, 0, 393215, 0, 0, 327680, 0, 0, 327681, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 327688, 0, 0, 327689, 0, 0, 327690, 0, 0, 327691, 0, 0, 327692, 0, 0, 327693, 0, 0, 327694, 0, 0, 327695, 0, 0, 458736, 0, 0, 458737, 0, 0, 458738, 0, 0, 458739, 0, 0, 458740, 0, 0, 458741, 0, 0, 458742, 0, 0, 458743, 0, 0, 458744, 0, 0, 458745, 0, 0, 458746, 0, 0, 458747, 0, 0, 458748, 0, 0, 458749, 0, 0, 458750, 0, 0, 458751, 0, 0, 393216, 0, 0, 393217, 0, 0, 393218, 0, 0, 393219, 0, 0, 393220, 0, 0, 393221, 0, 0, 393222, 0, 0, 393223, 0, 0, 393224, 0, 0, 393225, 0, 0, 393226, 0, 0, 393227, 0, 0, 393228, 0, 0, 393229, 0, 0, 393230, 0, 0, 393231, 0, 0, 524272, 0, 0, 524273, 0, 0, 524274, 0, 0, 524275, 0, 0, 524276, 0, 0, 524277, 0, 0, 524278, 0, 0, 524279, 0, 0, 524280, 0, 0, 524281, 0, 0, 524282, 0, 0, 524283, 0, 0, 524284, 0, 0, 524285, 0, 0, 524286, 0, 0, 524287, 0, 0, 458752, 0, 0, 458753, 0, 0, 458754, 0, 0, 458755, 0, 0, 458756, 0, 0, 458757, 0, 0, 458758, 0, 0, 458759, 0, 0, 458760, 0, 0, 458761, 0, 0, 458762, 0, 0, 458763, 0, 0, 458764, 0, 0, 458765, 0, 0, 458766, 0, 0, 458767, 0, 0, 589808, 0, 0, 589809, 0, 0, 589810, 0, 0, 589811, 0, 0, 589812, 0, 0, 589813, 0, 0, 589814, 0, 0, 589815, 0, 0, 589816, 0, 0, 589817, 0, 0, 589818, 0, 0, 589819, 0, 0, 589820, 0, 0, 589821, 0, 0, 589822, 0, 0, 589823, 0, 0, 524288, 0, 0, 524289, 0, 0, 524290, 0, 0, 524291, 0, 0, 524292, 0, 0, 524293, 0, 0, 524294, 0, 0, 524295, 0, 0, 524296, 0, 0, 524297, 0, 0, 524298, 0, 0, 524299, 0, 0, 524300, 0, 0, 524301, 0, 0, 524302, 0, 0, 524303, 0, 0 )
+
+[node name="NewGameButton" type="Button" parent="."]
+margin_left = -30.0369
+margin_top = 26.487
+margin_right = 29.9631
+margin_bottom = 46.487
+theme = ExtResource( 7 )
+custom_fonts/font = ExtResource( 5 )
+text = "NEW GAME"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StrategyPhaseButton" type="Button" parent="."]
+visible = false
+margin_left = 51.2159
+margin_top = -10.0649
+margin_right = 111.216
+margin_bottom = 9.93513
+theme = ExtResource( 7 )
+custom_fonts/font = ExtResource( 5 )
+text = "NEXT TURN"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HowToPlayButton" type="Button" parent="."]
+margin_left = -35.827
+margin_top = 69.0
+margin_right = 36.173
+margin_bottom = 88.0
+theme = ExtResource( 7 )
+custom_fonts/font = ExtResource( 5 )
+text = "HOW TO PLAY"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameManager" type="Node2D" parent="."]
+script = ExtResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( -5.3454, 0 )
+current = true
+zoom = Vector2( 0.3, 0.3 )
+
+[node name="Player_side" type="Node2D" parent="."]
+position = Vector2( 0, 54.704 )
+
+[node name="Turret_player" parent="Player_side" instance=ExtResource( 3 )]
+position = Vector2( -71.4946, 0 )
+
+[node name="Turret_player2" parent="Player_side" instance=ExtResource( 3 )]
+position = Vector2( -36.0866, 0 )
+
+[node name="Turret_player3" parent="Player_side" instance=ExtResource( 3 )]
+
+[node name="Turret_player4" parent="Player_side" instance=ExtResource( 3 )]
+position = Vector2( 38.4677, 0 )
+
+[node name="Turret_player5" parent="Player_side" instance=ExtResource( 3 )]
+position = Vector2( 76.7622, 0 )
+
+[node name="Enemy_side" type="Node2D" parent="."]
+position = Vector2( 0, -53.1801 )
+
+[node name="Turret_enemy" parent="Enemy_side" instance=ExtResource( 2 )]
+position = Vector2( -71.4946, 0 )
+
+[node name="Turret_enemy2" parent="Enemy_side" instance=ExtResource( 2 )]
+position = Vector2( -36.087, 0 )
+
+[node name="Turret_enemy3" parent="Enemy_side" instance=ExtResource( 2 )]
+
+[node name="Turret_enemy4" parent="Enemy_side" instance=ExtResource( 2 )]
+position = Vector2( 38.5271, 0 )
+
+[node name="Turret_enemy5" parent="Enemy_side" instance=ExtResource( 2 )]
+position = Vector2( 76.8692, 0 )
+
+[node name="CardContainer" type="HBoxContainer" parent="."]
+margin_left = -206.0
+margin_top = -17.0
+margin_right = 205.0
+margin_bottom = 45.0
+mouse_filter = 2
+custom_constants/separation = 32
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CombatWaveTimer" type="Timer" parent="."]
+wait_time = 0.8
+[connection signal="pressed" from="NewGameButton" to="GameManager" method="_on_NewGameButton_pressed"]
+[connection signal="pressed" from="StrategyPhaseButton" to="GameManager" method="_on_StrategyPhaseButton_pressed"]
+[connection signal="pressed" from="HowToPlayButton" to="GameManager" method="_on_HowToPlayButton_pressed"]
